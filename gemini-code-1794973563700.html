@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio | นายณัฐชนน สินธำรงรักษ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --navy: #0f172a;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-github-nav { background: var(--primary); color: var(--white) !important; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; }
+        .menu-toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--navy); cursor: pointer; }
+        header { background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%); color: var(--white); padding: 90px 5%; display: flex; align-items: center; justify-content: center; }
+        .hero-container { max-width: 1050px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
+        .hero-text { flex: 1; min-width: 300px; }
+        .badge { display: inline-block; background: rgba(255, 255, 255, 0.15); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-text h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.25; margin-bottom: 14px; }
+        .hero-text p { font-size: 1.1rem; color: #e0f2fe; margin-bottom: 28px; }
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-primary { background: var(--white); color: var(--primary); padding: 12px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .btn-outline { border: 2px solid var(--white); color: var(--white); padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; }
+        .avatar-circle { width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 6px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700; color: #fff; margin: 0 auto; }
+        .container { max-width: 1050px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 1.9rem; color: var(--navy); margin-bottom: 8px; }
+        .section-title .line { width: 60px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: var(--white); padding: 35px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); }
+        .about-info h3, .skills-box h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.25rem; }
+        .info-list { list-style: none; }
+        .info-list li { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 0.98rem; }
+        .info-list li strong { color: var(--navy); display: inline-block; width: 130px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .skill-tag { background: #e0f2fe; color: var(--primary-dark); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+        .btn-card { display: inline-block; text-align: center; background: var(--primary); color: var(--white); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .activity-item { background: var(--white); border-radius: 12px; padding: 20px; border-left: 5px solid var(--primary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
+        .activity-item h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+        .activity-item p { font-size: 0.92rem; color: var(--text-muted); }
+        footer { background: var(--navy); color: var(--white); text-align: center; padding: 45px 20px; margin-top: 40px; }
+        footer p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 8px; }
+        footer a { color: #38bdf8; text-decoration: none; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: var(--white); padding: 20px; }
+            .nav-links.active { display: flex; }
+            .hero-container { text-align: center; justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home" class="logo">Nattchanon.Portfolio</a>
+        <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">หน้าแรก</a>
+            <a href="#about">แนะนำตัว & ทักษะ</a>
+            <a href="#projects">ผลงานโค้ด</a>
+            <a href="#activities">กิจกรรม</a>
+            <a href="https://github.com" target="_blank" class="btn-github-nav">GitHub</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge">E-PORTFOLIO | แฟ้มสะสมผลงาน</span>
+                <h1>นายณัฐชนน สินธำรงรักษ์</h1>
+                <p>นักเรียนชั้นมัธยมศึกษาปีที่ 6 แผนการเรียนศิลป์ธุรกิจการค้าสมัยใหม่<br>โรงเรียนธัญรัตน์</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">ดูผลงานโค้ด</a>
+                    <a href="#about" class="btn-outline">ข้อมูลส่วนตัว</a>
+                </div>
+            </div>
+            <div>
+                <div class="avatar-circle">NS</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>แนะนำตัว & ทักษะความสามารถ</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-info">
+                <h3>ข้อมูลส่วนตัว</h3>
+                <ul class="info-list">
+                    <li><strong>ชื่อ-นามสกุล:</strong> นายณัฐชนน สินธำรงรักษ์</li>
+                    <li><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6</li>
+                    <li><strong>แผนการเรียน:</strong> ศิลป์ธุรกิจการค้าสมัยใหม่</li>
+                    <li><strong>สถานศึกษา:</strong> โรงเรียนธัญรัตน์</li>
+                    <li><strong>ความสนใจ:</strong> ด้านกีฬา และด้านคอมพิวเตอร์</li>
+                    <li><strong>อีเมลติดต่อ:</strong> a.atstudio61@gmail.com</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>ทักษะและความสนใจ</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">
+                    สนใจการประยุกต์ใช้เทคโนโลยีคอมพิวเตอร์และการเขียนโปรแกรมร่วมกับธุรกิจการค้าสมัยใหม่ รวมถึงการเล่นกีฬาเพื่อเสริมสร้างวินัยและการทำงานเป็นทีม
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5 & CSS3</span>
+                    <span class="skill-tag">JavaScript เบื้องต้น</span>
+                    <span class="skill-tag">Git & GitHub Pages</span>
+                    <span class="skill-tag">ธุรกิจการค้าสมัยใหม่</span>
+                    <span class="skill-tag">การใช้ AI พัฒนาเว็บไซต์</span>
+                    <span class="skill-tag">ทักษะด้านกีฬา</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container" style="padding-top: 10px;">
+        <div class="section-title">
+            <h2>ผลงานการเขียนโค้ด (Projects)</h2>
+            <div class="line"></div>
+        </div>
+        <div class="projects-grid">
+            <div class="card">
+                <div>
+                    <h3>1. เว็บไซต์ E-Portfolio ส่วนตัว</h3>
+                    <p>พัฒนาเว็บไซต์แฟ้มสะสมผลงานออนไลน์ด้วย HTML5, CSS3 และ JavaScript รองรับการแสดงผลทั้งคอมพิวเตอร์และมือถือ เผยแพร่ผ่าน GitHub Pages</p>
+                </div>
+                <a href="index.html" target="_blank" class="btn-card">เปิดดูไฟล์ซอร์สโค้ด (index.html)</a>
+            </div>
+            <div class="card">
+                <div>
+                    <h3>2. การจัดการโครงสร้างเว็บด้วย GitHub</h3>
+                    <p>เรียนรู้การจัดเก็บไฟล์โค้ด สร้างเอกสารอธิบายโปรเจกต์ (README.md) และเปิดใช้งานระบบโฮสติ้งออนไลน์ผ่าน GitHub Pages</p>
+                </div>
+                <a href="README.md" target="_blank" class="btn-card">ดูเอกสารอธิบาย (README.md)</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="container" style="padding-top: 10px;">
+        <div class="section-title">
+            <h2>กิจกรรมและความสนใจ (Activities)</h2>
+            <div class="line"></div>
+        </div>
+        <div class="activities-grid">
+            <div class="activity-item">
+                <h3>ด้านคอมพิวเตอร์และเทคโนโลยี</h3>
+                <p>ฝึกพัฒนาเว็บไซต์ด้วยภาษา HTML, CSS, JavaScript และใช้ AI ร่วมกับ GitHub เพื่อสร้างผลงานออนไลน์</p>
+            </div>
+            <div class="activity-item">
+                <h3>ด้านกีฬาและนันทนาการ</h3>
+                <p>เข้าร่วมกิจกรรมกีฬาภายในโรงเรียนธัญรัตน์ ฝึกความมีน้ำใจนักกีฬา ความรับผิดชอบ และการทำงานเป็นทีม</p>
+            </div>
+            <div class="activity-item">
+                <h3>ด้านธุรกิจการค้าสมัยใหม่</h3>
+                <p>ศึกษาการนำเทคโนโลยีดิจิทัลมาใช้ในการนำเสนอข้อมูลและพัฒนาสื่อออนไลน์</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>ช่องทางการติดต่อ</h3>
+        <p>นายณัฐชนน สินธำรงรักษ์ | โรงเรียนธัญรัตน์</p>
+        <p>อีเมล: <a href="mailto:a.atstudio61@gmail.com">a.atstudio61@gmail.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.85rem; color: #64748b;">© 2026 Nattchanon Sinthamrongrak</p>
+    </footer>
+</body>
+</html>
