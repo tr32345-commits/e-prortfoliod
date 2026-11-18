@@ -122,4 +122,199 @@
 
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 18px 35px rgba(2, 132, 199, 0.16); border-color: var
+        .card:hover { transform: translateY(-10px); box-shadow: 0 18px 35px rgba(2, 132, 199, 0.16); border-color: var(--primary); }
+        .card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+        .btn-card { display: inline-block; text-align: center; background: var(--primary); color: var(--white); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.3s, transform 0.2s; }
+        .btn-card:hover { background: var(--primary-dark); transform: scale(1.03); }
+
+        .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .activity-item { background: var(--white); border-radius: 12px; padding: 20px; border-left: 5px solid var(--primary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .activity-item:hover { transform: translateX(8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
+        .activity-item h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+        .activity-item p { font-size: 0.92rem; color: var(--text-muted); }
+
+        footer { background: var(--navy); color: var(--white); text-align: center; padding: 45px 20px; margin-top: 40px; }
+        footer p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 8px; }
+        footer a { color: #38bdf8; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+            .nav-links.active { display: flex; }
+            .hero-container { text-align: center; justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home" class="logo">Nattchanon.Portfolio</a>
+        <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">หน้าแรก</a>
+            <a href="#about">แนะนำตัว & ทักษะ</a>
+            <a href="#projects">ผลงานโค้ด</a>
+            <a href="#activities">กิจกรรม</a>
+            <a href="https://github.com/tr32345-commits/e-prortfoliod" target="_blank" class="btn-github-nav">GitHub</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="bg-bubble bubble-1"></div>
+        <div class="bg-bubble bubble-2"></div>
+        <div class="bg-bubble bubble-3"></div>
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge">E-PORTFOLIO | แฟ้มสะสมผลงาน</span>
+                <h1>นายณัฐชนน สินธำรงรักษ์</h1>
+                <div class="typing-box"><span id="typing-text"></span><span class="cursor">&nbsp;</span></div>
+                <p>นักเรียนชั้นมัธยมศึกษาปีที่ 6 แผนการเรียนศิลป์ธุรกิจการค้าสมัยใหม่<br>โรงเรียนธัญรัตน์</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">ดูผลงานโค้ด</a>
+                    <a href="#about" class="btn-outline">ข้อมูลส่วนตัว</a>
+                </div>
+            </div>
+            <div>
+                <div class="avatar-circle" title="สวัสดีครับ!">NS</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container reveal">
+        <div class="section-title">
+            <h2>แนะนำตัว & ทักษะความสามารถ</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-info">
+                <h3>ข้อมูลส่วนตัว</h3>
+                <ul class="info-list">
+                    <li><strong>ชื่อ-นามสกุล:</strong> นายณัฐชนน สินธำรงรักษ์</li>
+                    <li><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6</li>
+                    <li><strong>แผนการเรียน:</strong> ศิลป์ธุรกิจการค้าสมัยใหม่</li>
+                    <li><strong>สถานศึกษา:</strong> โรงเรียนธัญรัตน์</li>
+                    <li><strong>ความสนใจ:</strong> ด้านกีฬา และด้านคอมพิวเตอร์</li>
+                    <li><strong>อีเมลติดต่อ:</strong> a.atstudio61@gmail.com</li>
+                </ul>
+            </div>
+            <div class="skills-box">
+                <h3>ทักษะและความสนใจ</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">
+                    สนใจการประยุกต์ใช้เทคโนโลยีคอมพิวเตอร์และการเขียนโปรแกรมร่วมกับธุรกิจการค้าสมัยใหม่ รวมถึงการเล่นกีฬาเพื่อเสริมสร้างวินัยและการทำงานเป็นทีม
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5 & CSS3</span>
+                    <span class="skill-tag">JavaScript เบื้องต้น</span>
+                    <span class="skill-tag">Git & GitHub Pages</span>
+                    <span class="skill-tag">ธุรกิจการค้าสมัยใหม่</span>
+                    <span class="skill-tag">การใช้ AI พัฒนาเว็บไซต์</span>
+                    <span class="skill-tag">ทักษะด้านกีฬา</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container reveal" style="padding-top: 10px;">
+        <div class="section-title">
+            <h2>ผลงานการเขียนโค้ด (Projects)</h2>
+            <div class="line"></div>
+        </div>
+        <div class="projects-grid">
+            <div class="card">
+                <div>
+                    <h3>1. เว็บไซต์ E-Portfolio ส่วนตัว</h3>
+                    <p>พัฒนาเว็บไซต์แฟ้มสะสมผลงานออนไลน์ด้วย HTML5, CSS3 และ JavaScript รองรับการแสดงผลทั้งคอมพิวเตอร์และมือถือ เผยแพร่ผ่าน GitHub Pages</p>
+                </div>
+                <a href="https://github.com/tr32345-commits/e-prortfoliod/blob/main/index.html" target="_blank" class="btn-card">เปิดดูไฟล์ซอร์สโค้ด (index.html)</a>
+            </div>
+            <div class="card">
+                <div>
+                    <h3>2. การจัดการโครงสร้างเว็บด้วย GitHub</h3>
+                    <p>เรียนรู้การจัดเก็บไฟล์โค้ด สร้างเอกสารอธิบายโปรเจกต์ (README.md) และเปิดใช้งานระบบโฮสติ้งออนไลน์ผ่าน GitHub Pages</p>
+                </div>
+                <a href="https://github.com/tr32345-commits/e-prortfoliod/blob/main/README.md" target="_blank" class="btn-card">ดูเอกสารอธิบาย (README.md)</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="container reveal" style="padding-top: 10px;">
+        <div class="section-title">
+            <h2>กิจกรรมและความสนใจ (Activities)</h2>
+            <div class="line"></div>
+        </div>
+        <div class="activities-grid">
+            <div class="activity-item">
+                <h3>ด้านคอมพิวเตอร์และเทคโนโลยี</h3>
+                <p>ฝึกพัฒนาเว็บไซต์ด้วยภาษา HTML, CSS, JavaScript และใช้ AI ร่วมกับ GitHub เพื่อสร้างผลงานออนไลน์</p>
+            </div>
+            <div class="activity-item">
+                <h3>ด้านกีฬาและนันทนาการ</h3>
+                <p>เข้าร่วมกิจกรรมกีฬาภายในโรงเรียนธัญรัตน์ ฝึกความมีน้ำใจนักกีฬา ความรับผิดชอบ และการทำงานเป็นทีม</p>
+            </div>
+            <div class="activity-item">
+                <h3>ด้านธุรกิจการค้าสมัยใหม่</h3>
+                <p>ศึกษาการนำเทคโนโลยีดิจิทัลมาใช้ในการนำเสนอข้อมูลและพัฒนาสื่อออนไลน์</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>ช่องทางการติดต่อ</h3>
+        <p>นายณัฐชนน สินธำรงรักษ์ | โรงเรียนธัญรัตน์</p>
+        <p>อีเมล: <a href="mailto:a.atstudio61@gmail.com">a.atstudio61@gmail.com</a></p>
+        <p style="margin-top: 20px; font-size: 0.85rem; color: #64748b;">© 2026 Nattchanon Sinthamrongrak</p>
+    </footer>
+
+    <script>
+        // 1. เอฟเฟกต์พิมพ์ข้อความอัตโนมัติ (Typing Effect)
+        const texts = [
+            "สนใจด้านคอมพิวเตอร์และการพัฒนาเว็บไซต์ 💻",
+            "รักการเล่นกีฬาและการทำงานเป็นทีม ⚽",
+            "แผนการเรียนศิลป์ธุรกิจการค้าสมัยใหม่ 📈"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingEl = document.getElementById("typing-text");
+
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            if (isDeleting) {
+                typingEl.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingEl.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 40 : 80;
+            if (!isDeleting && charIndex === currentText.length) {
+                speed = 1800; // หยุดให้อ่านตอนพิมพ์จบประโยค
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                speed = 400;
+            }
+            setTimeout(typeEffect, speed);
+        }
+        typeEffect();
+
+        // 2. ตรวจจับการเลื่อนหน้าจอเพื่อให้แต่ละส่วนลอยขึ้นมาแสดง
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 60) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealSections);
+        revealSections();
+    </script>
+</body>
+</html>
