@@ -17,50 +17,112 @@
             --border: #e2e8f0;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* แถบเมนูนำทาง */
+        nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; transition: all 0.3s ease; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); text-decoration: none; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.05); }
         .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s; }
+        .nav-links a:not(.btn-github-nav)::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--primary); transition: width 0.3s ease; }
+        .nav-links a:not(.btn-github-nav):hover::after { width: 100%; }
         .nav-links a:hover { color: var(--primary); }
-        .btn-github-nav { background: var(--primary); color: var(--white) !important; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; }
+        .btn-github-nav { background: var(--primary); color: var(--white) !important; padding: 8px 18px; border-radius: 50px; font-size: 0.9rem; transition: transform 0.2s, background 0.3s; }
+        .btn-github-nav:hover { background: var(--primary-dark); transform: translateY(-2px); }
         .menu-toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--navy); cursor: pointer; }
-        header { background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%); color: var(--white); padding: 90px 5%; display: flex; align-items: center; justify-content: center; }
+
+        /* พื้นหลังส่วนหัวไล่เฉดสีเคลื่อนไหว */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        header {
+            background: linear-gradient(-45deg, #0284c7, #0369a1, #0f172a, #1d4ed8);
+            background-size: 300% 300%;
+            animation: gradientMove 10s ease infinite;
+            color: var(--white);
+            padding: 95px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .hero-container { max-width: 1050px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
-        .hero-text { flex: 1; min-width: 300px; }
-        .badge { display: inline-block; background: rgba(255, 255, 255, 0.15); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-text { flex: 1; min-width: 300px; animation: fadeInUp 0.8s ease-out; }
+        .badge { display: inline-block; background: rgba(255, 255, 255, 0.15); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; margin-bottom: 16px; backdrop-filter: blur(4px); }
         .hero-text h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.25; margin-bottom: 14px; }
         .hero-text p { font-size: 1.1rem; color: #e0f2fe; margin-bottom: 28px; }
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
-        .btn-primary { background: var(--white); color: var(--primary); padding: 12px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-        .btn-outline { border: 2px solid var(--white); color: var(--white); padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; }
-        .avatar-circle { width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 6px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700; color: #fff; margin: 0 auto; }
+        .btn-primary { background: var(--white); color: var(--primary); padding: 12px 26px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.25s, box-shadow 0.25s; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); }
+        .btn-outline { border: 2px solid var(--white); color: var(--white); padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.25s; }
+        .btn-outline:hover { background: var(--white); color: var(--navy); transform: translateY(-3px); }
+
+        /* วงกลมโปรไฟล์ลอยขึ้น-ลงเบาๆ */
+        @keyframes floatAvatar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .avatar-circle {
+            width: 220px; height: 220px; border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 6px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; font-weight: 700; color: #fff; margin: 0 auto;
+            animation: floatAvatar 4s ease-in-out infinite;
+        }
+
+        /* แอนิเมชันตอนเลื่อนหน้าจอ (Scroll Reveal) */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .container { max-width: 1050px; margin: 0 auto; padding: 60px 20px; }
         .section-title { text-align: center; margin-bottom: 40px; }
         .section-title h2 { font-size: 1.9rem; color: var(--navy); margin-bottom: 8px; }
-        .section-title .line { width: 60px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; }
+        .section-title .line { width: 60px; height: 4px; background: var(--primary); margin: 0 auto; border-radius: 2px; transition: width 0.4s ease; }
+        .section-title:hover .line { width: 110px; }
+
+        /* กล่องแนะนำตัว & แท็กทักษะเด้งรับเมาส์ */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: var(--white); padding: 35px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); }
         .about-info h3, .skills-box h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.25rem; }
         .info-list { list-style: none; }
-        .info-list li { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 0.98rem; }
+        .info-list li { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 0.98rem; transition: padding-left 0.2s; }
+        .info-list li:hover { padding-left: 6px; }
         .info-list li strong { color: var(--navy); display: inline-block; width: 130px; }
         .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-        .skill-tag { background: #e0f2fe; color: var(--primary-dark); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
+        .skill-tag { background: #e0f2fe; color: var(--primary-dark); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; cursor: default; transition: transform 0.2s, background 0.2s, color 0.2s; }
+        .skill-tag:hover { transform: translateY(-3px) scale(1.03); background: var(--primary); color: var(--white); }
+
+        /* การ์ดผลงานยกตัวเมื่อชี้เมาส์ */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(2, 132, 199, 0.15); border-color: var(--primary); }
         .card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; }
         .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
-        .btn-card { display: inline-block; text-align: center; background: var(--primary); color: var(--white); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .btn-card { display: inline-block; text-align: center; background: var(--primary); color: var(--white); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: background 0.3s, transform 0.2s; }
+        .btn-card:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+        /* การ์ดกิจกรรมเลื่อนขวาเมื่อชี้เมาส์ */
         .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .activity-item { background: var(--white); border-radius: 12px; padding: 20px; border-left: 5px solid var(--primary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
+        .activity-item { background: var(--white); border-radius: 12px; padding: 20px; border-left: 5px solid var(--primary); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .activity-item:hover { transform: translateX(6px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
         .activity-item h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
         .activity-item p { font-size: 0.92rem; color: var(--text-muted); }
+
         footer { background: var(--navy); color: var(--white); text-align: center; padding: 45px 20px; margin-top: 40px; }
         footer p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 8px; }
         footer a { color: #38bdf8; text-decoration: none; }
+
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: var(--white); padding: 20px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
             .nav-links.active { display: flex; }
             .hero-container { text-align: center; justify-content: center; }
             .hero-buttons { justify-content: center; }
@@ -77,7 +139,7 @@
             <a href="#about">แนะนำตัว & ทักษะ</a>
             <a href="#projects">ผลงานโค้ด</a>
             <a href="#activities">กิจกรรม</a>
-            <a href="https://github.com" target="_blank" class="btn-github-nav">GitHub</a>
+            <a href="https://github.com/tr32345-commits/e-prortfoliod" target="_blank" class="btn-github-nav">GitHub</a>
         </div>
     </nav>
 
@@ -98,7 +160,7 @@
         </div>
     </header>
 
-    <section id="about" class="container">
+    <section id="about" class="container reveal">
         <div class="section-title">
             <h2>แนะนำตัว & ทักษะความสามารถ</h2>
             <div class="line"></div>
@@ -132,7 +194,7 @@
         </div>
     </section>
 
-    <section id="projects" class="container" style="padding-top: 10px;">
+    <section id="projects" class="container reveal" style="padding-top: 10px;">
         <div class="section-title">
             <h2>ผลงานการเขียนโค้ด (Projects)</h2>
             <div class="line"></div>
@@ -143,19 +205,19 @@
                     <h3>1. เว็บไซต์ E-Portfolio ส่วนตัว</h3>
                     <p>พัฒนาเว็บไซต์แฟ้มสะสมผลงานออนไลน์ด้วย HTML5, CSS3 และ JavaScript รองรับการแสดงผลทั้งคอมพิวเตอร์และมือถือ เผยแพร่ผ่าน GitHub Pages</p>
                 </div>
-                <a href="index.html" target="_blank" class="btn-card">เปิดดูไฟล์ซอร์สโค้ด (index.html)</a>
+                <a href="https://github.com/tr32345-commits/e-prortfoliod/blob/main/index.html" target="_blank" class="btn-card">เปิดดูไฟล์ซอร์สโค้ด (index.html)</a>
             </div>
             <div class="card">
                 <div>
                     <h3>2. การจัดการโครงสร้างเว็บด้วย GitHub</h3>
                     <p>เรียนรู้การจัดเก็บไฟล์โค้ด สร้างเอกสารอธิบายโปรเจกต์ (README.md) และเปิดใช้งานระบบโฮสติ้งออนไลน์ผ่าน GitHub Pages</p>
                 </div>
-                <a href="README.md" target="_blank" class="btn-card">ดูเอกสารอธิบาย (README.md)</a>
+                <a href="https://github.com/tr32345-commits/e-prortfoliod/blob/main/README.md" target="_blank" class="btn-card">ดูเอกสารอธิบาย (README.md)</a>
             </div>
         </div>
     </section>
 
-    <section id="activities" class="container" style="padding-top: 10px;">
+    <section id="activities" class="container reveal" style="padding-top: 10px;">
         <div class="section-title">
             <h2>กิจกรรมและความสนใจ (Activities)</h2>
             <div class="line"></div>
@@ -182,5 +244,21 @@
         <p>อีเมล: <a href="mailto:a.atstudio61@gmail.com">a.atstudio61@gmail.com</a></p>
         <p style="margin-top: 20px; font-size: 0.85rem; color: #64748b;">© 2026 Nattchanon Sinthamrongrak</p>
     </footer>
+
+    <script>
+        // ตรวจจับการเลื่อนหน้าจอเพื่อให้แต่ละส่วนค่อยๆ ลอยขึ้นมาแสดง
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealSections);
+        revealSections(); // เรียกทำงานทันทีตอนเปิดหน้าเว็บ
+    </script>
 </body>
 </html>
